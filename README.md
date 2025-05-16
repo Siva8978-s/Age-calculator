@@ -22,7 +22,7 @@ It is a simple Javascript project which calculates our age in years.
 - Download or clone the repository
 
 ```
-git clone https: ff
+git clone https: https://github.com/Siva8978-s/Age-calculator.git
 ```
 
 - Go to the directory
