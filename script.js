@@ -1,24 +1,32 @@
-let currDate= document.getElementById("currDate");
-let dateOfBirth = document.querySelector("#DOB");
-const CalcAge= document.getElementById("CalcAge");
-const displayAge= document.getElementById("displayAge");
-const Age= document.getElementById("age");
-var today = new Date();
-currDate.innerText=`Today's Date is : ${today.toLocaleDateString('en-US')}`;
+document.addEventListener("DOMContentLoaded", () => {
+  const currDate = document.getElementById("currDate");
+  const dateOfBirth = document.getElementById("DOB");
+  const CalcAge = document.getElementById("CalcAge");
+  const displayAge = document.getElementById("displayAge");
+  const Age = document.getElementById("age");
 
-CalcAge.addEventListener("click", () => {
+  // Display today's date
+  const today = new Date();
+  currDate.innerText = `Today's Date is: ${today.toLocaleDateString('en-US')}`;
+
+  // Calculate age on button click
+  CalcAge.addEventListener("click", () => {
+    // Reset previous message
+    displayAge.classList.remove("visible");
+    Age.innerText = "";
+
     if (!dateOfBirth.value) {
-        displayAge.style.visibility = "visible";
-        Age.innerText = "Please enter your date of birth.";
-        return;
+      Age.innerText = "⚠️ Please enter your date of birth.";
+      displayAge.classList.add("visible");
+      return;
     }
-    var birthDate = new Date(dateOfBirth.value);
-    var today = new Date();
-    var age = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-        age = age - 1;
+    const birthDate = new Date(dateOfBirth.value);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
     }
-    displayAge.style.visibility = "visible";
     Age.innerText = `You are ${age} years old.`;
+    displayAge.classList.add("visible");
+  });
 });
